@@ -78,8 +78,8 @@ class Api {
 }
 
 const api = new Api({
-  // baseUrl: "http://mestoproject.nomoreparties.sbs",
-  baseUrl: "http://localhost:3000",
+  baseUrl: "http://mestoproject.nomoreparties.sbs/api",
+  // baseUrl: "http://localhost:3000",
   headers: {
     authorization: `Bearer ${localStorage.getItem("token")}`,
     "Content-Type": "application/json",
