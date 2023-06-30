@@ -1,5 +1,5 @@
-import logo from "../images/logo.svg";
-import { Link, Route, Routes } from "react-router-dom";
+import logo from '../images/logo.svg';
+import { Link, Route, Routes } from 'react-router-dom';
 
 function Header({ logOut, email }) {
   return (

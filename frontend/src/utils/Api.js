@@ -3,7 +3,7 @@ class Api {
     this._baseUrl = baseUrl;
     this._headers = headers;
   }
-
+  // setToken(token) { this._headers.Authorization = `Bearer ${token}`; }
   _getJson(res) {
     if (res.ok) {
       return res.json();
@@ -78,8 +78,10 @@ class Api {
 }
 
 const api = new Api({
+  // baseUrl: "http://mestoproject.nomoreparties.sbs",
   baseUrl: "http://localhost:3000",
   headers: {
+    authorization: `Bearer ${localStorage.getItem("token")}`,
     "Content-Type": "application/json",
   },
 });

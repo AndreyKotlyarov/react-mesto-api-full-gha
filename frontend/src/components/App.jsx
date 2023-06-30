@@ -1,22 +1,22 @@
-import { useState, useEffect } from "react";
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
-import Header from "./Header";
-import Main from "./Main";
-import Footer from "./Footer";
-import PopupWithForm from "./PopupWithForm";
-import ImagePopup from "./ImagePopup";
-import Login from "./Login";
-import Register from "./Register";
-import InfoTooltip from "./InfoTooltip";
-import "../index.css";
+import { useState, useEffect } from 'react';
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import Header from './Header';
+import Main from './Main';
+import Footer from './Footer';
+import PopupWithForm from './PopupWithForm';
+import ImagePopup from './ImagePopup';
+import Login from './Login';
+import Register from './Register';
+import InfoTooltip from './InfoTooltip';
+import '../index.css';
 
-import api from "../utils/Api";
-import auth from "../utils/Auth";
-import { CurrentUserContext } from "../contexts/CurrentUserContext";
-import ProtectedRouteElement from "./ProtectedRoute";
-import EditProfilePopup from "./EditProfilePopup";
-import EditAvatarPopup from "./EditAvatarPopup";
-import AddPlacePopup from "./AddPlacePopup";
+import api from '../utils/Api';
+import auth from '../utils/Auth';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
+import ProtectedRouteElement from './ProtectedRoute';
+import EditProfilePopup from './EditProfilePopup';
+import EditAvatarPopup from './EditAvatarPopup';
+import AddPlacePopup from './AddPlacePopup';
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -29,17 +29,17 @@ function App() {
 
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState('');
   const [userData, setUserData] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
 
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
   const [isRegistrationSuccess, setRegistrationSuccess] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
     setToken(token);
   }, []);
 
@@ -50,10 +50,10 @@ function App() {
 
     auth
       .getUserData(token)
-      .then((data) => {
-        setUserData(data.data);
+      .then((userData) => {
+        setUserData(userData);
         setIsLoggedIn(true);
-        navigate("/");
+        navigate('/');
       })
       .catch((err) => {
         console.log(err);
@@ -64,11 +64,11 @@ function App() {
     auth
       .register(email, password)
       .then((res) => {
-        localStorage.setItem("token", res.token);
+        localStorage.setItem('token', res.token);
         setToken(res.token);
         setRegistrationSuccess(true);
         setIsInfoTooltipOpen(true);
-        navigate("/signin");
+        navigate('/signin');
       })
       .catch((err) => {
         setRegistrationSuccess(false);
@@ -81,8 +81,9 @@ function App() {
     auth
       .authorize(email, password)
       .then((res) => {
-        localStorage.setItem("token", res.token);
+        localStorage.setItem('token', res.token);
         setToken(res.token);
+        setUserData(userData);
       })
       .catch((err) => {
         console.log(err);
@@ -90,14 +91,15 @@ function App() {
   };
 
   const logOut = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem('token');
     setIsLoggedIn(false);
-    setToken("");
+    setToken('');
     setUserData({
-      password: "",
-      email: "",
+      password: '',
+      email: '',
     });
-    navigate("/signin");
+    setCurrentUser(userData);
+    navigate('/signin');
   };
 
   useEffect(() => {
@@ -146,7 +148,7 @@ function App() {
 
   function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
-    const isLiked = card.likes.some((like) => like._id === currentUser._id);
+    const isLiked = card.likes.some((like) => like === currentUser._id);
     // Отправляем запрос в API и получаем обновлённые данные карточки
     api
       .changeLikeCardStatus(card._id, !isLiked)

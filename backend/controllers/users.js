@@ -7,17 +7,18 @@ const ConflictError = require('../errors/ConflictError');
 const userModel = require('../models/user');
 const created = require('../utils/consts');
 
+const { NODE_ENV, JWT_SECRET } = process.env;
+
 const login = (req, res, next) => {
   const { email, password } = req.body;
   return userModel.findUserByCredentials(email, password)
     .then((user) => {
-      const token = jwt.sign({ _id: user._id }, 'some-secret-key', { expiresIn: '7d' });
+      const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'some-secret-key', { expiresIn: '7d' });
       res.send({ token }).select('-password');
     })
     .catch((err) => next(err));
 };
 const getUserInfo = (req, res, next) => {
-  console.log(req.user._id);
   userModel
     .findById(req.user._id)
     .orFail(new NotFoundError('Пользователь не найден'))
