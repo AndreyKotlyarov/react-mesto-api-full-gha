@@ -14,4 +14,4 @@ IP-адрес 51.250.91.85
 
 Frontend https://mestoproject.nomoreparties.sbs/
 
-Backend https://mestoproject.nomoreparties.sbs/api
+Backend https://api.mestoproject.nomoreparties.sbs/
