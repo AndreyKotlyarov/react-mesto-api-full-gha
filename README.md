@@ -10,7 +10,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 51.250.91.85
+IP 51.250.91.85
 
 Frontend https://mestoproject.nomoreparties.sbs/
 
