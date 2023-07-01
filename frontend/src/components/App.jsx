@@ -86,6 +86,7 @@ function App() {
         setUserData(userData);
       })
       .catch((err) => {
+        setIsInfoTooltipOpen(true);
         console.log(err);
       });
   };
@@ -103,8 +104,10 @@ function App() {
   };
 
   useEffect(() => {
+    if (!token) {
+      return;
+    }
     api.setToken(token);
-    debugger;
     api
       .getCurrentUser()
       .then((userData) => {
@@ -116,8 +119,10 @@ function App() {
   }, [userData, token]);
 
   useEffect(() => {
+    if (!token) {
+      return;
+    }
     api.setToken(token);
-    debugger;
     api
       .getInitialCards()
       .then((cards) => {
