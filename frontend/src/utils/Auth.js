@@ -1,3 +1,4 @@
+import baseUrl from "./consts";
 class Auth {
   constructor({ baseUrl }) {
     this._baseUrl = baseUrl;
@@ -40,6 +41,6 @@ class Auth {
   }
 }
 
-const auth = new Auth({ baseUrl: "http://localhost:3000" });
+const auth = new Auth({ baseUrl: baseUrl });
 
 export default auth;

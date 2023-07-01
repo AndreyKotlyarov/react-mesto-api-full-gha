@@ -1,3 +1,4 @@
+import baseUrl from "./consts";
 class Api {
   constructor({ baseUrl, headers }) {
     this._baseUrl = baseUrl;
@@ -79,8 +80,7 @@ class Api {
 }
 
 const api = new Api({
-  // baseUrl: "http://mestoproject.nomoreparties.sbs/api/",
-  baseUrl: "http://localhost:3000",
+  baseUrl: baseUrl,
   headers: {
     authorization: `Bearer ${localStorage.getItem("token")}`,
     "Content-Type": "application/json",
