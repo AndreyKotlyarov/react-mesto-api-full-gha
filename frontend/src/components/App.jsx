@@ -95,8 +95,8 @@ function App() {
     setIsLoggedIn(false);
     setToken('');
     setUserData({
-      password: '',
       email: '',
+      password: '',
     });
     setCurrentUser(userData);
     navigate('/signin');
@@ -111,7 +111,7 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [userData]);
 
   useEffect(() => {
     api
@@ -122,7 +122,7 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [userData]);
 
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);

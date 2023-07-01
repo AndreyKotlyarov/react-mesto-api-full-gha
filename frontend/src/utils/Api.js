@@ -12,6 +12,7 @@ class Api {
   }
 
   getInitialCards() {
+    // const token = localStorage.getItem('jwt');
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
     }).then(this._getJson);
@@ -78,8 +79,8 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: "http://mestoproject.nomoreparties.sbs/api",
-  // baseUrl: "http://localhost:3000",
+  // baseUrl: "http://mestoproject.nomoreparties.sbs/api/",
+  baseUrl: "http://localhost:3000",
   headers: {
     authorization: `Bearer ${localStorage.getItem("token")}`,
     "Content-Type": "application/json",

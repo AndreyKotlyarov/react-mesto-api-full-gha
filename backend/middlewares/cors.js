@@ -1,10 +1,12 @@
 const allowedCors = [
-  'localhost:3001',
+  'http://localhost:3000',
+  'https://localhost:3000',
+  'http://localhost:3001',
+  'https://localhost:3001',
   'https://mestoproject.nomoreparties.sbs',
   'http://mestoproject.nomoreparties.sbs',
-  'http://localhost:3000',
-  'http://localhost:3001',
-  'localhost:3000',
+  'https://mestoproject.nomoreparties.sbs/api',
+  'http://mestoproject.nomoreparties.sbs/api',
 ];
 
 const cors = (req, res, next) => {
