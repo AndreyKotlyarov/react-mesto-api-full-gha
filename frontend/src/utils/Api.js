@@ -4,7 +4,7 @@ class Api {
     this._baseUrl = baseUrl;
     this._headers = headers;
   }
-  // setToken(token) { this._headers.Authorization = `Bearer ${token}`; }
+  setToken(token) { this._headers.Authorization = `Bearer ${token}`; }
   _getJson(res) {
     if (res.ok) {
       return res.json();
@@ -13,7 +13,6 @@ class Api {
   }
 
   getInitialCards() {
-    // const token = localStorage.getItem('jwt');
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
     }).then(this._getJson);
@@ -82,7 +81,7 @@ class Api {
 const api = new Api({
   baseUrl: baseUrl,
   headers: {
-    authorization: `Bearer ${localStorage.getItem("token")}`,
+    // authorization: `Bearer ${localStorage.getItem("token")}`,
     "Content-Type": "application/json",
   },
 });

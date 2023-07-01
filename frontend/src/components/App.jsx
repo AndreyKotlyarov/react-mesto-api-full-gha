@@ -81,10 +81,7 @@ function App() {
     auth
       .authorize(email, password)
       .then((res) => {
-        debugger;
         localStorage.setItem('token', res.token);
-        const token = localStorage.getItem('token');
-        setToken(token);
         setToken(res.token);
         setUserData(userData);
       })
@@ -106,6 +103,8 @@ function App() {
   };
 
   useEffect(() => {
+    api.setToken(token);
+    debugger;
     api
       .getCurrentUser()
       .then((userData) => {
@@ -114,9 +113,11 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
-  }, [userData]);
+  }, [userData, token]);
 
   useEffect(() => {
+    api.setToken(token);
+    debugger;
     api
       .getInitialCards()
       .then((cards) => {
@@ -125,7 +126,7 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
-  }, [userData]);
+  }, [userData, token]);
 
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);
