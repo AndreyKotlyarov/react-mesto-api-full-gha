@@ -48,5 +48,5 @@ app.use(errors());
 app.use(errorsHandler);
 
 app.listen(PORT, () => {
-  console.log('Сервер запущен на порту 3000');
+  console.log(`Сервер запущен на порту ${PORT}`);
 });
